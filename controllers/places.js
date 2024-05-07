@@ -26,4 +26,5 @@ router.get('/', (req, res) => {
     res.render('places/index.jsx', { places })
 })
 
+
 module.exports = router
