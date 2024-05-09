@@ -28,7 +28,7 @@ function edit_form ({place, id}) {
                 <div className="row">
                     <div className="form-group col-sm-6">
                         <label htmlFor="pic">Place State</label>
-                        <input id="state" type="text"
+                        <input id="state" type="text" 
                             name="state"
                             id="state"
                             required
