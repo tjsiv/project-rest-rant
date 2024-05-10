@@ -30,14 +30,27 @@ router.post('/', (req, res) => {
   res.redirect('/places')
 })
 
+//prop show route
+router.get('/:id', (req, res) => {
+  let id = Number(req.params.id)
+  if (isNaN(id)) {
+    res.render('error404')
+  }
+  else if (!places[id]) {
+    res.render('error404')
+  }
+  else {
+    res.render('places/show', { place: places[id], id })
+  }
+})
 
 //put route
 router.put('/:id', (req, res) => {
-  let id = Number(req.params.id)
-  if (isNaN(id)) {
+  let i = Number(req.params.id)
+  if (isNaN(i)) {
       res.render('error404')
   }
-  else if (!places[id]) {
+  else if (!places[i]) {
       res.render('error404')
   }
   else {
@@ -53,53 +66,38 @@ router.put('/:id', (req, res) => {
           req.body.state = 'USA'
       }
 
-      // Save the new data into places[id]
-      places[id] = req.body
-      res.redirect(`/places/${id}`)
-  }
-})
-
-
-//prop show route
-router.get('/:id', (req, res) => {
-  let id = Number(req.params.id)
-  if (isNaN(id)) {
-    res.render('error404')
-  }
-  else if (!places[id]) {
-    res.render('error404')
-  }
-  else {
-    res.render('places/show', { place: places[id], id })
-  }
-})
-
-//EDIT LINK
-router.get('/:id/edit', (req, res) => {
-  let id = Number(req.params.id)
-  if (isNaN(id)) {
-      res.render('error404')
-  }
-  else if (!places[id]) {
-      res.render('error404')
-  }
-  else {
-    res.render('places/edit', { place: places[id] })
+      // Save the new data into places[i]
+      places[i] = req.body
+      res.redirect(`/places/${i}`)
   }
 })
 
 //DELETE ROUTE
 router.delete('/:id', (req, res) => {
-  let id = Number(req.params.id)
-  if (isNaN(id)) {
-    res.render('error404')
+  let i = Number(req.params.id)
+  if (isNaN(i)) {
+      res.render('error404')
   }
-  else if (!places[id]) {
-    res.render('error404')
+  else if (!places[i]) {
+      res.render('error404')
   }
-  else {
-    places.splice(id, 1)
-    res.redirect('/places')
+  else { 
+      places.splice(i, 1)
+      res.redirect('/places')
+  }
+})
+
+//EDIT LINK
+router.get('/:id/edit', (req, res) => {
+  let i = Number(req.params.id)
+  if (isNaN(i)) {
+      res.render('error404')
+  }
+  else if (!places[i]) {
+      res.render('error404')
+  }
+  else { 
+      res.render('places/edit', { place: places[i], i})
   }
 })
 
