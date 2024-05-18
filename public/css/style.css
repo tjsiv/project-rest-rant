@@ -59,3 +59,7 @@ form {
 img {
   height: 20em;
 }
+.edBut{
+  width: 10%;
+  align-self: center;
+}
